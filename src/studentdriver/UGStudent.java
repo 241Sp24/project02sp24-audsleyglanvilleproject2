@@ -2,6 +2,7 @@ package studentdriver;
 
 public class UGStudent {
 
+    //Declaring the vartiables
     private String studentName;
     private int studentID;
     private boolean isEnrolled;
@@ -14,6 +15,7 @@ public class UGStudent {
     private static final int CREDITS_PER_COURSE = 3;
     private double perCreditFee;
 
+    //Setting the variables to themselves
     public UGStudent(String studentName, int studentID, boolean isEnrolled, boolean hasScholarship, double scholarshipAmount, int coursesEnrolled, double additionalFee) {
         this.studentName = studentName;
         this.studentID = studentID;
