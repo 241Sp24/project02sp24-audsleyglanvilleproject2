@@ -2,6 +2,13 @@ package studentdriver;
 
 public class UGStudent {
 
+    /**
+     * @param hasScholarship the hasScholarship to set
+     */
+    public void setHasScholarship(boolean hasScholarship) {
+        this.hasScholarship = hasScholarship;
+    }
+
     //Declaring the vartiables
     private String studentName;
     private int studentID;
@@ -29,7 +36,7 @@ public class UGStudent {
     /**
      * @return the hasScholarship
      */
-    public boolean isHasScholarship() {
+    public boolean HasScholarship() {
         return hasScholarship;
     }
 
@@ -51,15 +58,68 @@ public class UGStudent {
         int totalCredits = coursesEnrolled * CREDITS_PER_COURSE;
         double tuitionFee = totalCredits * perCreditFee;
         double totalFee = tuitionFee + ADDITIONAL_FEE;
-        if (hasScholarship) {
-            totalFee -= scholarshipAmount;
+        if (HasScholarship()) {
+            totalFee -= getScholarshipAmount();
         }
         return totalFee;
     }
 
+    /**
+     * @return the studentName
+     */
+    public String getStudentName() {
+        return studentName;
+    }
+
+    /**
+     * @param studentName the studentName to set
+     */
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
+    }
+
+    /**
+     * @param scholarshipAmount the scholarshipAmount to set
+     */
+    public void setScholarshipAmount(double scholarshipAmount) {
+        this.scholarshipAmount = scholarshipAmount;
+    }
+
+    /**
+     * @return the studentID
+     */
+    public int getStudentID() {
+        return studentID;
+    }
+
+    /**
+     * @param studentID the studentID to set
+     */
+    public void setStudentID(int studentID) {
+        this.studentID = studentID;
+    }
+
+    /**
+     * @return the isEnrolled
+     */
+    public boolean isEnrolled() {
+        return isEnrolled;
+    }
+
+    /**
+     * @param isEnrolled the isEnrolled to set
+     */
+    public void setisEnrolled(boolean isEnrolled) {
+        this.isEnrolled = isEnrolled;
+    }
+
+    boolean hasScholarship() {
+        return hasScholarship;
+    }
+
     public String toString() {
-        return "Student Name: " + studentName + "\nStudent ID: " + studentID + "\nEnrolled: " + isEnrolled
-                + "\nScholarship: " + hasScholarship + "\nScholaship Amount: " + scholarshipAmount
+        return "Student Name: " + getStudentName() + "\nStudent ID: " + getStudentID() + "\nEnrolled: " + isEnrolled()
+                + "\nScholarship: " + HasScholarship() + "\nScholaship Amount: " + getScholarshipAmount()
                 + "\nCourses Enrolled: " + coursesEnrolled + "\nPayable Amount: " + +getPayableAmount();
     }
 }

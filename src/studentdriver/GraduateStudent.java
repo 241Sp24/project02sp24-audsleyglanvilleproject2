@@ -1,7 +1,5 @@
 package studentdriver;
 
-import java.util.*;
-
 public class GraduateStudent {
 
     private int coursesEnrolled;
