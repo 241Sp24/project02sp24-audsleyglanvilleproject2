@@ -1,6 +1,6 @@
 package studentdriver;
 
-public class OnlineStudent {
+public class OnlineStudent extends StudentFees {
 
     //Declaring Variables
     public static double MONTHLY_FEE = 1245.25;
@@ -11,20 +11,23 @@ public class OnlineStudent {
 
     //Setting them
     public OnlineStudent(String studentName, int ID, boolean isEnrolled, int NumOfMonths) {
-        this.StudentName = StudentName;
-        this.ID = ID;
-        this.IsEnrolled = IsEnrolled;
+        super(studentName, ID, isEnrolled);
         this.NumOfMonths = NumOfMonths;
     }
 
+    public int getNumOfMonths() {
+        return NumOfMonths;
+    }
+
     //calculating the payable amount
-    public double GetPayableAmount() {
+    @Override
+    public double getPayableAmount() {
         return MONTHLY_FEE * NumOfMonths;
     }
 
     //ToString to print
     public String toString() {
         return "Student Name: " + StudentName + "Student ID: " + ID + "Enrolled: " + IsEnrolled
-                + "No of Months" + NumOfMonths + "Payable amount" + GetPayableAmount();
+                + "No of Months" + NumOfMonths + "Payable amount" + getPayableAmount();
     }
 }

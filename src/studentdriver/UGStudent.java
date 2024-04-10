@@ -1,13 +1,6 @@
 package studentdriver;
 
-public class UGStudent {
-
-    /**
-     * @param hasScholarship the hasScholarship to set
-     */
-    public void setHasScholarship(boolean hasScholarship) {
-        this.hasScholarship = hasScholarship;
-    }
+public class UGStudent extends StudentFees {
 
     //Declaring the vartiables
     private String studentName;
@@ -23,14 +16,20 @@ public class UGStudent {
     private double perCreditFee;
 
     //Setting the variables to themselves
-    public UGStudent(String studentName, int studentID, boolean isEnrolled, boolean hasScholarship, double scholarshipAmount, int coursesEnrolled, double additionalFee) {
-        this.studentName = studentName;
-        this.studentID = studentID;
-        this.isEnrolled = isEnrolled;
+    public UGStudent(String studentName, int studentID, boolean isEnrolled, boolean hasScholarship,
+            double scholarshipAmount, int coursesEnrolled, double additionalFee) {
+        super(studentName, studentID, isEnrolled);
         this.hasScholarship = hasScholarship;
         this.scholarshipAmount = scholarshipAmount;
         this.coursesEnrolled = coursesEnrolled;
-        this.additionalFee = additionalFee;
+        this.isEnrolled = isEnrolled;
+    }
+
+    /**
+     * @param hasScholarship the hasScholarship to set
+     */
+    public void setHasScholarship(boolean hasScholarship) {
+        this.hasScholarship = hasScholarship;
     }
 
     /**
@@ -54,9 +53,13 @@ public class UGStudent {
         return coursesEnrolled;
     }
 
+    @Override
     public double getPayableAmount() {
-        int totalCredits = coursesEnrolled * CREDITS_PER_COURSE;
-        double tuitionFee = totalCredits * perCreditFee;
+        if (!isEnrolled) {
+            return 0;
+        }
+        int totalCredits = coursesEnrolled * getCREDITS_PER_COURSE();
+        double tuitionFee = totalCredits * getPER_CREDIT_FEE();
         double totalFee = tuitionFee + ADDITIONAL_FEE;
         if (HasScholarship()) {
             totalFee -= getScholarshipAmount();
@@ -67,10 +70,9 @@ public class UGStudent {
     /**
      * @return the studentName
      */
-    public String getStudentName() {
-        return studentName;
-    }
-
+//    public String getStudentName() {
+//        return studentName;
+//    }
     /**
      * @param studentName the studentName to set
      */
@@ -83,13 +85,6 @@ public class UGStudent {
      */
     public void setScholarshipAmount(double scholarshipAmount) {
         this.scholarshipAmount = scholarshipAmount;
-    }
-
-    /**
-     * @return the studentID
-     */
-    public int getStudentID() {
-        return studentID;
     }
 
     /**
@@ -118,8 +113,8 @@ public class UGStudent {
     }
 
     public String toString() {
-        return "Student Name: " + getStudentName() + "\nStudent ID: " + getStudentID() + "\nEnrolled: " + isEnrolled()
+        return String.format("Student Name: " + getStudentName() + "\nStudent ID: " + getStudentID() + "\nEnrolled: " + isEnrolled()
                 + "\nScholarship: " + HasScholarship() + "\nScholaship Amount: " + getScholarshipAmount()
-                + "\nCourses Enrolled: " + coursesEnrolled + "\nPayable Amount: " + +getPayableAmount();
+                + "\nCourses Enrolled: " + coursesEnrolled + "\nPayable Amount: " + +getPayableAmount());
     }
 }

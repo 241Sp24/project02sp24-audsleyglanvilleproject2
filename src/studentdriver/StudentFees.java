@@ -48,7 +48,7 @@ public class StudentFees {
     /**
      * @return the isEnrolled
      */
-    public boolean isIsEnrolled() {
+    public boolean isEnrolled() {
         return isEnrolled;
     }
 
